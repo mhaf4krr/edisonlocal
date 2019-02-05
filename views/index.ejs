@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Configuration</title>
+    <link rel="stylesheet" href="../assets/css/materialize.min.css">
+
+    <style>
+    
+    #img_container,.center-aligned{
+        text-align: center;
+        margin:auto;
+    }
+    </style>
+</head>
+<body>
+        <div class="card-panel teal lighten-2 center-align"><p>Hyder's Edison Control Interface</p></div>
+    <div class="container">
+        <div class="row">
+            <div class="col s12" id='img_container'>
+                <img src="../assets/images/bulboff.gif" id='bulb_img' alt="bulb">
+            </div>
+
+            
+        </div>
+
+        <div class="center">
+                <h6>LED 1 : <span id="ledStatus" class="">OFF</span></h6> <br><br>
+                <button class="waves-effect waves-light btn center-align" id='toggleBtn'>Toggle</button>
+        </div>
+    </div>
+
+   
+
+    <script src="../assets/js/materialize.min.js"></script>
+    <script>
+        let ledStateBrowser;
+        document.querySelector("#toggleBtn").addEventListener('click',()=>{
+
+        let xhr = new XMLHttpRequest();
+        xhr.open('GET','/toggle');
+        xhr.send();
+        xhr.onload = function(){
+            ledStateBrowser = xhr.response;
+            console.log("client :" + ledStateBrowser);
+
+            if(ledStateBrowser == "false"){
+            document.querySelector('#bulb_img').src="../assets/images/bulboff.gif";
+            document.querySelector('#ledStatus').textContent = "OFF";
+            document.querySelector('#ledStatus').className = "red-text";
+            
+        }
+
+        else {
+            document.querySelector('#bulb_img').src="../assets/images/bulbon.gif";
+            document.querySelector('#ledStatus').textContent = "ON";
+            document.querySelector('#ledStatus').className = "green-text";
+        }
+        }
+    })
+    </script>
+</body>
+</html>
