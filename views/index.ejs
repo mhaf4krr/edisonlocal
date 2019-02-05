@@ -60,6 +60,18 @@
         }
         }
     })
+
+    function getAnalogValue(){
+        let xhr = new XMLHttpRequest();
+        xhr.open('GET','/analogValue',true);
+        xhr.send();
+        xhr.onload = function(){
+            let analogValue = xhr.response;
+            console.log('Analog Value Received :' + analogValue);
+        }
+    }
+
+    setInterval(function(){ getAnalogValue() }, 1000);
     </script>
 </body>
 </html>

@@ -5,7 +5,17 @@ led1.dir(mraa.DIR_OUT);
 /*switch it off initially*/
 led1.write(0);
 
+
+/* Starting Analog Values */
+var analogPin0 = new mraa.Aio(0);
+
+
 var ledStatus = false;
+
+function getAnanlogValue(){
+    return analogPin0.read();
+}
+
 
 var toggle = () =>{
 
@@ -29,5 +39,6 @@ function getState(){
 
 module.exports = {
     ledToggle : toggle,
-    ledState : getState
+    ledState : getState,
+    getAnalogValue : getAnanlogValue
 };

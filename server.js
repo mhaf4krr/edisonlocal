@@ -20,6 +20,12 @@ app.get('/',(req,res)=>{
     res.render('index');
 })
 
+app.get('/analogValue',(req,res)=>{
+    var value = edison.getAnalogValue();
+    console.log("Analog Value :" + value);
+    res.send(value);
+})
+
 app.get('/toggle',(req,res)=>{
     edison.ledToggle();
     res.send(edison.ledState());
