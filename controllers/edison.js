@@ -24,13 +24,18 @@ function getAnanlogValue(){
 }
 
 
+function setServo(val){
+    pwmPin.pulsewidth_us(1500);
+    pwmPin.enable(true);
+}
+
 var toggle = () =>{
 
     if(ledStatus){
         console.log("Switching Off");
         ledStatus = false;
         led1.write(0);
-        pwmPin.pulsewidth_us(1000);
+        pwmPin.pulsewidth_us(1500);
         pwmPin.enable(true);  
     }
 
@@ -38,7 +43,7 @@ var toggle = () =>{
         console.log("Switching On");
         ledStatus = true;
         led1.write(1);
-        pwmPin.pulsewidth_us(2000);
+        pwmPin.pulsewidth_us(2500);
         pwmPin.enable(true);  
     }
 
@@ -51,5 +56,6 @@ function getState(){
 module.exports = {
     ledToggle : toggle,
     ledState : getState,
-    getAnalogValue : getAnanlogValue
+    getAnalogValue : getAnanlogValue,
+    setServo : setServo
 };

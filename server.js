@@ -32,4 +32,10 @@ app.get('/toggle',(req,res)=>{
     console.log("Server send : "+edison.ledState());
 })
 
+app.get('/setServo',(req,res)=>{
+    var value = req.query.value;
+    console.log("servo value received : " + value);
+    edison.setServo(value);
+})
+
 server.listen(8090,'192.168.43.221');
