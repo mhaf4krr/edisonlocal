@@ -21,9 +21,9 @@ app.get('/',(req,res)=>{
 })
 
 app.get('/analogValue',(req,res)=>{
-    var value = edison.getAnalogValue();
-    console.log("Analog Value :" + value);
+    var value = edison.getAnalogValue().toString();
     res.send(value);
+    console.log(value);
 })
 
 app.get('/toggle',(req,res)=>{
